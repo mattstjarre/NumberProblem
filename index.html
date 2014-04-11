@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>Matt St Jarre - Number Problem</title>
-    <link rel="stylesheet" href="QUnit.css">
-</head>
-<body>
-<div id="qunit"></div>
-<div id="qunit-fixture"></div>
-<script src="script.js"></script>
-<script src="QUnit.js"></script>
-<script src="tests.js"></script>
+	<head>
+		<meta charset="utf-8">
+		<title>Matt St Jarre - Number Problem</title>
+		<link rel="stylesheet" href="QUnit.css">
+	</head>
+	<body>
 
-</body>
+		<div id="qunit"></div>
+		<div id="qunit-fixture"></div>
+		
+		<br><br>
+		<h3>Or Just Try It Out Down Here...</h3>
+		<input type="text" placeholder="2523.04" onkeyup="updateP(this.value)" />
+		<p id="string"></p>
+
+		<script src="money.js"></script>
+		<script src="script.js"></script>
+		<script src="QUnit.js"></script>
+		<script src="tests.js"></script>
+		<script>
+			updateP("2523.04");
+		
+			function updateP(text){
+				document.getElementById('string').innerHTML = printString(text);
+			}
+		</script>
+
+	</body>
 </html>
