@@ -1,7 +1,11 @@
 var ONES = ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
-var TEEN = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+var TEEN = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", 
+			"eighteen", "nineteen"];
 var TENS = ["", "", "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety"];
-var PLACE = ["hundred", "thousand", "million", "billion", "trillion", "quadrillion", "quintillion", "sextillion", "septillion", "octillion", "nonillion", "decillion", "undecillion", "duodecillion", "tredecillion", "quattuordecillion", "quindecillion", "sexdecillion", "septendecillion", "octodecillion", "novemdecillion", "viginitillion", "centillion"];
+var PLACE = ["hundred", "thousand", "million", "billion", "trillion", "quadrillion", "quintillion", 
+			"sextillion", "septillion", "octillion", "nonillion", "decillion", "undecillion", 
+			"duodecillion", "tredecillion", "quattuordecillion", "quindecillion", "sexdecillion", 
+			"septendecillion", "octodecillion", "novemdecillion", "viginitillion", "centillion"];
 
 var Money = function(money) {
 	var temp = money.replace(/^0+/, '').split('.');
@@ -42,7 +46,11 @@ Money.prototype.addToString = function(text) {
 
 Money.prototype.evalulateOnes = function(place, curr, prev, prevv) {
 	// Reset skip if prev was teen, or add in ones
-	this.skip ? this.skip = false : curr != 0 && (this.addToString(ONES[curr]));
+	if (this.skip){
+		this.skip = false;
+	}else {
+		curr != 0 && this.addToString(ONES[curr]);
+	}
 	// Make sure you're not repeating empty places
 	if (place / 3 != 0) {
 		if (curr + prev + prevv != 0) {
@@ -51,7 +59,7 @@ Money.prototype.evalulateOnes = function(place, curr, prev, prevv) {
 	}
 };
 
-Money.prototype.evaluateTens = function(next, curr, skip) {
+Money.prototype.evaluateTens = function(next, curr) {
 	// If it's a teen, add it in and skip next
 	if (curr == 1) {
 		this.addToString(TEEN[next]);
